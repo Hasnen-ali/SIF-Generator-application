@@ -1,0 +1,40 @@
+# ─── Dependencies ────────────────────────────────────────────────────────────
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# ─── Environment Variables (NEVER commit these) ───────────────────────────────
+.env
+client/.env
+server/.env
+
+# ─── Build Output ─────────────────────────────────────────────────────────────
+client/build/
+client/dist/
+
+# ─── Generated SIF Files (runtime output, not source code) ───────────────────
+server/generated-files/*.sif
+server/generated-files/*.txt
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── OS Files ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Editor / IDE ─────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+.cache/
+.parcel-cache/
+coverage/
