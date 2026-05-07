@@ -11,6 +11,15 @@ server/.env
 # ─── Build Output ─────────────────────────────────────────────────────────────
 client/build/
 client/dist/
+dist/
+release/
+installer/
+fixed-installer/
+final-installer/
+working-installer/
+ready-installer/
+latest-installer/
+debug-build/
 
 # ─── Generated SIF Files (runtime output, not source code) ───────────────────
 server/generated-files/*.sif

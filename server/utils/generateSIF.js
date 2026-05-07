@@ -63,7 +63,9 @@ const generateSIF = (data) => {
   const safeName = sanitizeFileName(data.employeeName);
   const fileName = `SIF_${safeName}_${timestamp}.sif`;
 
-  const outputDir = path.join(__dirname, '..', 'generated-files');
+  // In Electron mode, use the userData path; otherwise use the default
+  const outputDir = process.env.GENERATED_FILES_DIR
+    || path.join(__dirname, '..', 'generated-files');
 
   // Ensure output directory exists
   if (!fs.existsSync(outputDir)) {

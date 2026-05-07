@@ -33,8 +33,8 @@ const Home = () => {
       </header>
 
       {/* Form Section */}
-      <section aria-label="SIF Generation Form" onClick={handleGenerated}>
-        <FormCard />
+      <section aria-label="SIF Generation Form">
+        <FormCard onGenerated={handleGenerated} />
       </section>
 
       {/* History Section */}

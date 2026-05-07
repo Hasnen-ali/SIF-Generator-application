@@ -15,7 +15,7 @@ import { sifFormSchema } from '../utils/validation';
 import { generateSIF } from '../services/api';
 import { downloadFile } from '../utils/helpers';
 
-const FormCard = () => {
+const FormCard = ({ onGenerated }) => {
   // ── React Hook Form setup ─────────────────────────────────────────────────
   const {
     register,
@@ -37,6 +37,7 @@ const FormCard = () => {
       const response = await generateSIF(data);
 
       setResult(response);
+      onGenerated?.();
 
       // Auto-download the file
       const baseUrl = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
