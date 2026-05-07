@@ -20,6 +20,7 @@ working-installer/
 ready-installer/
 latest-installer/
 debug-build/
+network-fixed-installer/
 
 # ─── Generated SIF Files (runtime output, not source code) ───────────────────
 server/generated-files/*.sif

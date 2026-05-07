@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react';
-import { downloadFile } from '../utils/helpers';
+import { downloadFile, getAppOrigin } from '../utils/helpers';
 
 /**
  * @param {Object} props
@@ -36,7 +36,7 @@ const PreviewBox = ({ sifContent, downloadUrl, fileName, onReset }) => {
 
   // Trigger file download
   const handleDownload = () => {
-    const fullUrl = `${process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000'}${downloadUrl}`;
+    const fullUrl = `${getAppOrigin()}${downloadUrl}`;
     downloadFile(fullUrl, fileName);
   };
 

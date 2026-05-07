@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { fetchHistory } from '../services/api';
-import { formatDate, formatCurrency, downloadFile } from '../utils/helpers';
+import { formatDate, formatCurrency, downloadFile, getAppOrigin } from '../utils/helpers';
 
 const HistoryTable = () => {
   const [records, setRecords] = useState([]);
@@ -29,7 +29,7 @@ const HistoryTable = () => {
   }, [loadHistory]);
 
   const handleDownload = (record) => {
-    const baseUrl = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
+    const baseUrl = getAppOrigin();
     downloadFile(
       `${baseUrl}/generated-files/${record.generatedFileName}`,
       record.generatedFileName

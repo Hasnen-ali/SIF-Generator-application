@@ -4,8 +4,9 @@
  */
 
 import axios from 'axios';
+import { getAppOrigin } from '../utils/helpers';
 
-const BASE_URL = process.env.REACT_APP_API_URL || '/api';
+const BASE_URL = `${getAppOrigin()}/api`;
 
 // Create a configured Axios instance
 const apiClient = axios.create({

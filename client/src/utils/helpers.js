@@ -2,6 +2,14 @@
  * General utility helpers for the SIF Generator frontend
  */
 
+export const getAppOrigin = () => {
+  if (window.location.origin && window.location.origin !== 'null') {
+    return window.location.origin;
+  }
+
+  return 'http://localhost:5000';
+};
+
 /**
  * Triggers a browser file download from a URL
  * @param {string} url - The file URL to download

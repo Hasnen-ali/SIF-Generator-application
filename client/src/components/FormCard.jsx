@@ -13,7 +13,7 @@ import Loader from './Loader';
 import PreviewBox from './PreviewBox';
 import { sifFormSchema } from '../utils/validation';
 import { generateSIF } from '../services/api';
-import { downloadFile } from '../utils/helpers';
+import { downloadFile, getAppOrigin } from '../utils/helpers';
 
 const FormCard = ({ onGenerated }) => {
   // ── React Hook Form setup ─────────────────────────────────────────────────
@@ -40,7 +40,7 @@ const FormCard = ({ onGenerated }) => {
       onGenerated?.();
 
       // Auto-download the file
-      const baseUrl = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
+      const baseUrl = getAppOrigin();
       downloadFile(`${baseUrl}${response.downloadUrl}`, response.fileName);
 
       toast.success('SIF file generated and downloaded!', {
