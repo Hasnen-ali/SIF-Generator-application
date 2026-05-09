@@ -1,7 +1,7 @@
 /**
  * SIF File Generator Utility
  *
- * Generates a pipe-separated Salary Information File (.sif)
+ * Generates a Salary Information File (.sif) matching the provided sample
  * and saves it to the /generated-files directory.
  */
 
@@ -34,12 +34,36 @@ const sanitizeFileName = (name) => {
 };
 
 /**
- * Generates SIF file content as a pipe-separated string
+ * Escapes a value for comma-separated SIF content.
+ * @param {*} value
+ * @returns {string}
+ */
+const escapeSIFValue = (value) => {
+  const stringValue = String(value ?? '');
+
+  if (/[",\r\n]/.test(stringValue)) {
+    return `"${stringValue.replace(/"/g, '""')}"`;
+  }
+
+  return stringValue;
+};
+
+/**
+ * Generates SIF file content as a comma-separated string
  * @param {Object} data - Employee data
  * @returns {string} - SIF file content
  */
 const buildSIFContent = (data) => {
-  const header = 'Record Sequence|Employee QID|Employee Name|Employee Bank|Employee Account|Working Days|Net Salary';
+  const header = [
+    'Record Sequence',
+    'Employee QID',
+    'Employee Name',
+    'Employee Bank Short Name',
+    'Employee Account',
+    'Number of Working Days',
+    'Net Salary',
+  ].join(',');
+
   const record = [
     1,
     data.employeeQID,
@@ -48,9 +72,9 @@ const buildSIFContent = (data) => {
     data.employeeAccount,
     data.workingDays,
     data.totalSalary,
-  ].join('|');
+  ].map(escapeSIFValue).join(',');
 
-  return `${header}\n${record}`;
+  return `${header}\r\n${record}\r\n`;
 };
 
 /**
@@ -81,4 +105,4 @@ const generateSIF = (data) => {
   return { filePath, fileName, sifContent };
 };
 
-module.exports = { generateSIF, formatTimestamp, sanitizeFileName };
+module.exports = { generateSIF, formatTimestamp, sanitizeFileName, buildSIFContent };
